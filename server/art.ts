@@ -261,30 +261,30 @@ export function renderStatusLine(
 // E-girl with cat headphones, heart top, skirt, legs, shoes
 
 SPECIES_ART["miko" as Species] = [
-  // Frame 0: idle
+  // Frame 0: idle (reading, arms out)
   [
     "   n   n    ",
     "  (◕.◕ )   ",
-    "   |♡ |    ",
-    "  /~~~~\   ",
+    "  ╱|♡ |╲   ",
+    "  /~~~~\\   ",
     "   |  |    ",
     "   ^^  ^^  ",
   ],
-  // Frame 1: success
+  // Frame 1: success (hands up celebrating)
   [
     "   n   n    ",
     "  (◕▽◕ )   ",
-    "   |♡ |    ",
-    "  /~~~~\   ",
+    " \\\\|♡ |//  ",
+    "  /~~~~\\   ",
     "   |  |    ",
     "   ^^  ^^  ",
   ],
-  // Frame 2: error
+  // Frame 2: error (facepalm, hand on face)
   [
     "   n   n    ",
-    "  (◕_◕ )   ",
+    "  (◕_◕ )>  ",
     "   |♡ |    ",
-    "  /~~~~\   ",
+    "  /~~~~\\   ",
     "   |  |    ",
     "   ^^  ^^  ",
   ],

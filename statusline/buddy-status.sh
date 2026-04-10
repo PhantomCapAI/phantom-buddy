@@ -114,12 +114,39 @@ pad_to() {
   printf '%s%*s' "$str" "$need" ""
 }
 
+# Arms based on state
+case "$REASON" in
+  build-pass|pet)
+    # Hands up celebrating
+    ARMS='\\|♡ |//'
+    ;;
+  error|test-fail)
+    # Facepalm — hand on face, no arms on body
+    ARMS=' |♡ |  '
+    ;;
+  *)
+    if [ "$BLINK" -eq 1 ]; then
+      # Arms down when blinking
+      ARMS=' |♡ |  '
+    else
+      # Idle — arms out reading
+      ARMS='╱|♡ |╲ '
+    fi
+    ;;
+esac
+
+# Face line — error gets the > facepalm hand
+case "$REASON" in
+  error|test-fail) FACE_LINE=" ${FACE}>" ;;
+  *)               FACE_LINE=" ${FACE} " ;;
+esac
+
 L_BT=$(pad_to "$BUB_T" "$TOTAL_W")
 L_BM=$(pad_to "$BUB_M" "$TOTAL_W")
 L_BB=$(pad_to "$BUB_B" "$TOTAL_W")
 L_EARS=$(pad_to "  n ╱ n    " "$TOTAL_W")
-L_FACE=$(pad_to " ${FACE}    " "$TOTAL_W")
-L_BODY=$(pad_to "  |♡ |     " "$TOTAL_W")
+L_FACE=$(pad_to "${FACE_LINE}   " "$TOTAL_W")
+L_BODY=$(pad_to " ${ARMS}    " "$TOTAL_W")
 L_SKRT=$(pad_to " /~~~~\\    " "$TOTAL_W")
 L_FEET=$(pad_to "  ^^  ^^   " "$TOTAL_W")
 

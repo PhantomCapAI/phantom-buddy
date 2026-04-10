@@ -8,8 +8,9 @@
                   ╰──────────────────────────╯
                     n ╱ n
                    (◕▽◕ )
-                    |♡ |
+                  \|♡ |//
                    /~~~~\
+                    |  |
                     ^^  ^^
 ```
 
@@ -28,15 +29,16 @@ She's not a theme. She's not a prompt. She's an MCP server + status line + hooks
 ## Sprites
 
 ```
-  Idle               Success             Error               Pet                 Blink
-  n   n              n   n               n   n               n   n               n   n
- (◕.◕ )            (◕▽◕ )             (◕_◕ )             (◕ω◕ )             (─.─ )
-  |♡ |              |♡ |               |♡ |               |♡ |               |♡ |
- /~~~~\            /~~~~\              /~~~~\              /~~~~\              /~~~~\
-  ^^  ^^            ^^  ^^              ^^  ^^              ^^  ^^              ^^  ^^
+  Idle (reading)     Success (hands up)  Error (facepalm)    Blink (arms down)
+   n   n              n   n               n   n               n   n
+  (◕.◕ )            (◕▽◕ )             (◕_◕ )>            (─.─ )
+  ╱|♡ |╲            \|♡ |//              |♡ |               |♡ |
+  /~~~~\            /~~~~\              /~~~~\              /~~~~\
+   |  |              |  |               |  |                |  |
+   ^^  ^^            ^^  ^^              ^^  ^^              ^^  ^^
 ```
 
-Each sprite is rendered in gold ANSI (`rgb(255,193,7)`) with a speech bubble above showing Miko's current reaction.
+Each sprite is rendered in gold ANSI (`rgb(255,193,7)`) with a speech bubble above showing Miko's current reaction. Arms change per state — reading pose when idle, hands up on success, facepalm on error, arms down when blinking.
 
 ---
 
