@@ -41,6 +41,34 @@ function info(msg: string) { console.log(`${CYAN}→${NC}  ${msg}`); }
 function warn(msg: string) { console.log(`${YELLOW}⚠${NC}  ${msg}`); }
 function err(msg: string) { console.log(`${RED}✗${NC}  ${msg}`); }
 
+
+// --- Star-or-Follow Gate ---
+
+async function checkStarGate(): Promise<boolean> {
+  const REPO = "PhantomCapAI/phantom-buddy";
+  const USER = "PhantomCapAI";
+  info("Verifying GitHub star & follow...");
+  let ghUser = "";
+  try { ghUser = execSync("gh api user --jq .login", { encoding: "utf8" }).trim(); }
+  catch { warn("gh CLI not found. Star + follow manually."); return false; }
+  if (!ghUser) { err("No GitHub user. Run: gh auth login"); return false; }
+  info(`GitHub user: ${ghUser}`);
+  let starred = false;
+  try { execSync(`gh api user/starred/${REPO} 2>/dev/null`); starred = true; } catch { starred = false; }
+  let following = false;
+  try { execSync(`gh api users/${ghUser}/following/${USER} 2>/dev/null`); following = true; } catch { following = false; }
+  if (starred) ok(`Starred ${REPO}`);
+  else { err(`Star https://github.com/${REPO}`); info("Run: gh api user/starred/PhantomCapAI/phantom-buddy -X PUT"); }
+  if (following) ok(`Following @${USER}`);
+  else { err(`Follow https://github.com/${USER}`); info("Run: gh api user/following/PhantomCapAI -X PUT"); }
+  if (!starred || !following) {
+    console.log("");
+    err("Star + follow required to install. This supports the creators.");
+    return false;
+  }
+  return true;
+}
+
 // ─── Preflight checks ──────────────────────────────────────────────────────
 
 function preflight(): boolean {
@@ -234,6 +262,11 @@ if (!preflight()) {
   console.log(`\n${RED}Installation aborted. Fix the issues above and retry.${NC}\n`);
   process.exit(1);
 }
+
+// Star gate check
+const gateOk = await checkStarGate();
+if (!gateOk) { process.exit(1); }
+ok("Access verified!");
 
 console.log("");
 info("Installing claude-buddy...\n");
