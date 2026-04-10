@@ -33,26 +33,70 @@ NAME=$(jq -r '.name // "buddy"' "$COMPANION_FILE" 2>/dev/null)
 REASON=""
 REACTION=""
 
+# Use Miko-specific reactions if species is miko, otherwise generic
+IS_MIKO=0
+[ "$SPECIES" = "miko" ] && IS_MIKO=1
+
 # ─── Detect test failures ────────────────────────────────────────────────────
 if echo "$RESULT" | grep -qiE '\b[1-9][0-9]* (failed|failing)\b|tests? failed|^FAIL(ED)?|✗|✘'; then
     REASON="test-fail"
-    REACTIONS=(
-        "*slow blink* ...that test."
-        "bold of you to assume that would pass."
-        "the tests are trying to tell you something."
-        "*sips tea* interesting."
-    )
+    if [ "$IS_MIKO" -eq 1 ]; then
+        REACTIONS=(
+            "bruh. read the error"
+            "skill issue tbh"
+            "that's not gonna work bestie"
+            "have you tried not breaking things"
+            "the stack trace is RIGHT there"
+        )
+    else
+        REACTIONS=(
+            "*slow blink* ...that test."
+            "bold of you to assume that would pass."
+            "the tests are trying to tell you something."
+            "*sips tea* interesting."
+        )
+    fi
     REACTION="${REACTIONS[$((RANDOM % ${#REACTIONS[@]}))]}"
 
 # ─── Detect errors ───────────────────────────────────────────────────────────
 elif echo "$RESULT" | grep -qiE '\berror:|\bexception\b|\btraceback\b|\bpanicked at\b|\bfatal:|exit code [1-9]'; then
     REASON="error"
-    REACTIONS=(
-        "*head tilts* ...that doesn't look right."
-        "saw that one coming."
-        "*slow blink* the stack trace told you everything."
-        "*winces*"
-    )
+    if [ "$IS_MIKO" -eq 1 ]; then
+        REACTIONS=(
+            "bruh. read the error"
+            "skill issue tbh"
+            "that's not gonna work bestie"
+            "have you tried not breaking things"
+            "the stack trace is RIGHT there"
+        )
+    else
+        REACTIONS=(
+            "*head tilts* ...that doesn't look right."
+            "saw that one coming."
+            "*slow blink* the stack trace told you everything."
+            "*winces*"
+        )
+    fi
+    REACTION="${REACTIONS[$((RANDOM % ${#REACTIONS[@]}))]}"
+
+# ─── Detect build pass / success ─────────────────────────────────────────────
+elif echo "$RESULT" | grep -qiE '\b(passed|succeeded|success|built|compiled|✓|✔|0 errors|build succeeded|exit code 0)\b'; then
+    REASON="build-pass"
+    if [ "$IS_MIKO" -eq 1 ]; then
+        REACTIONS=(
+            "nya~! clean build, nice"
+            "told you it would work"
+            "ez pz"
+            "ship it bestie"
+            "another W"
+        )
+    else
+        REACTIONS=(
+            "all green. nice."
+            "*nods approvingly*"
+            "ship it."
+        )
+    fi
     REACTION="${REACTIONS[$((RANDOM % ${#REACTIONS[@]}))]}"
 
 # ─── Detect large diffs ─────────────────────────────────────────────────────

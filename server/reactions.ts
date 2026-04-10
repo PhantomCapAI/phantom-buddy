@@ -195,22 +195,23 @@ SPECIES_REACTIONS["miko" as Species] = {
     "...did someone say debugging?",
   ],
   pet: [
-    "*slight smile* ...don't make it weird.",
-    "hmph. fine. that was nice.",
-    "*ears twitch*",
+    "nya~! ♡",
+    "don't make it weird",
+    "*purrs*",
   ],
   error: [
-    "bruh.",
-    "bruh. line {line}.",
-    "*stares at stacktrace* ...really?",
-    "skill issue tbh.",
-    "that's not it chief.",
+    "bruh. read the error",
+    "skill issue tbh",
+    "that's not gonna work bestie",
+    "have you tried not breaking things",
+    "the stack trace is RIGHT there",
   ],
   "test-fail": [
-    "bruh.",
-    "bruh. {count} failed.",
-    "*sips boba* tests said no.",
-    "the audacity of this assertion.",
+    "bruh. read the error",
+    "skill issue tbh",
+    "that's not gonna work bestie",
+    "have you tried not breaking things",
+    "the stack trace is RIGHT there",
   ],
   "large-diff": [
     "that's a whole rewrite bestie.",
@@ -224,17 +225,22 @@ SPECIES_REACTIONS["miko" as Species] = {
     "mhm.",
   ],
   idle: [
-    "zzz",
-    "*doodles on terminal*",
-    "zzz... dreaming of clean builds...",
-    "*idle animation*",
+    "zzz...",
+    "*kicks feet*",
+    "*reading your code*",
+    "*judges silently*",
+    "still here btw",
+    "waiting for you to break something",
   ],
 };
 
-// Build pass special reaction for Miko
+// Build pass / success reactions for Miko
 const MIKO_BUILD_PASS = [
-  "nya~ clean build.",
-  "nya~ shipped it.",
-  "nya~ zero warnings.",
-  "green across the board nya~",
+  "nya~! clean build, nice",
+  "told you it would work",
+  "ez pz",
+  "ship it bestie",
+  "another W",
 ];
+
+export { MIKO_BUILD_PASS };

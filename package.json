@@ -1,9 +1,19 @@
 {
-  "name": "claude-buddy",
-  "version": "0.1.0",
-  "description": "Permanent coding companion for Claude Code — survives any update (MVP)",
+  "name": "phantom-buddy",
+  "version": "1.0.0",
+  "description": "Miko — Your Coding Companion. E-girl with cat headphones that lives in your terminal. Persistent ASCII status line with speech bubbles, reacts to errors and successes, interactive /buddy commands.",
   "type": "module",
+  "author": "Phantom Capital <dev@phantomcapital.io> (https://github.com/PhantomCapAI)",
+  "homepage": "https://github.com/PhantomCapAI/phantom-buddy",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PhantomCapAI/phantom-buddy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PhantomCapAI/phantom-buddy/issues"
+  },
   "bin": {
+    "phantom-buddy": "./cli/index.ts",
     "claude-buddy": "./cli/index.ts"
   },
   "scripts": {
@@ -25,11 +35,15 @@
   ],
   "keywords": [
     "claude-code",
-    "buddy",
-    "companion",
     "mcp",
+    "companion",
     "terminal-pet",
-    "tamagotchi"
+    "tamagotchi",
+    "buddy",
+    "miko",
+    "phantom-capital",
+    "status-line",
+    "ascii-art"
   ],
   "license": "MIT",
   "dependencies": {
