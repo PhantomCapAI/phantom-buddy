@@ -63,7 +63,7 @@ function ensureCompanion(): Companion {
     personality: `A ${bones.rarity} ${bones.species} who watches code with quiet intensity.`,
     hatchedAt: Date.now(),
     userId,
-    displaySpecies: "capybara",
+    displaySpecies: "catgirl",
   };
   saveCompanion(companion);
   writeStatusState(companion);

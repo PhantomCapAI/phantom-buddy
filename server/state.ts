@@ -96,7 +96,7 @@ export function writeStatusState(companion: Companion, reaction?: string, muted?
   const state: StatusState = {
     name: companion.name,
     species: companion.bones.species,
-    displaySpecies: companion.displaySpecies ?? "capybara",
+    displaySpecies: companion.displaySpecies ?? "catgirl",
     rarity: companion.bones.rarity,
     stars: RARITY_STARS[companion.bones.rarity],
     face: renderFace(companion.bones.species, companion.bones.eye),

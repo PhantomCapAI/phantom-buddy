@@ -12,8 +12,8 @@ REACTION_FILE="$HOME/.claude-buddy/reaction.json"
 MUTED=$(jq -r '.muted // false' "$STATE" 2>/dev/null)
 [ "$MUTED" = "true" ] && exit 0
 
-DISPLAY_SPECIES=$(jq -r '.displaySpecies // "capybara"' "$COMPANION" 2>/dev/null)
-[ -z "$DISPLAY_SPECIES" ] && DISPLAY_SPECIES="capybara"
+DISPLAY_SPECIES=$(jq -r '.displaySpecies // "catgirl"' "$COMPANION" 2>/dev/null)
+[ -z "$DISPLAY_SPECIES" ] && DISPLAY_SPECIES="catgirl"
 
 C=$'\033[38;2;255;193;7m'
 NC=$'\033[0m'
