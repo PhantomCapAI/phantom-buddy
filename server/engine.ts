@@ -70,12 +70,16 @@ export interface BuddyBones {
   dump: StatName;
 }
 
+export const DISPLAY_SPECIES = ["capybara", "catgirl"] as const;
+export type DisplaySpecies = typeof DISPLAY_SPECIES[number];
+
 export interface Companion {
   bones: BuddyBones;
   name: string;
   personality: string;
   hatchedAt: number;
   userId: string;
+  displaySpecies?: DisplaySpecies;
 }
 
 // ─── Hash: wyhash via Bun.hash, FNV-1a fallback ─────────────────────────────

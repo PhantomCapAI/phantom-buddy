@@ -1,7 +1,7 @@
 ---
 name: buddy
 description: "Show, pet, or manage your coding companion. Use when the user types /buddy or mentions their companion by name."
-argument-hint: "[show|pet|off|on|stats|rename <name>|personality <text>]"
+argument-hint: "[show|pet|off|on|stats|rename <name>|personality <text>|species <capybara|catgirl>]"
 allowed-tools: mcp__claude_buddy__*
 ---
 
@@ -22,6 +22,7 @@ Based on `$ARGUMENTS`:
 | `on` | Call `buddy_unmute` |
 | `rename <name>` | Call `buddy_rename` with the given name |
 | `personality <text>` | Call `buddy_set_personality` with the given text |
+| `species capybara` or `species catgirl` | Call `buddy_set_species` with the given species |
 
 ## CRITICAL OUTPUT RULES
 

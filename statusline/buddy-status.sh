@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# Miko (capybara) status line — ASCII art + speech bubble, right-aligned
+# Miko status line — ASCII art + speech bubble, right-aligned
 # Reads reaction text from reaction.json and displays it
+# Supports two display species: capybara (default) or catgirl
 
 STATE="$HOME/.claude-buddy/status.json"
 COMPANION="$HOME/.claude-buddy/companion.json"
@@ -10,6 +11,9 @@ REACTION_FILE="$HOME/.claude-buddy/reaction.json"
 
 MUTED=$(jq -r '.muted // false' "$STATE" 2>/dev/null)
 [ "$MUTED" = "true" ] && exit 0
+
+DISPLAY_SPECIES=$(jq -r '.displaySpecies // "capybara"' "$COMPANION" 2>/dev/null)
+[ -z "$DISPLAY_SPECIES" ] && DISPLAY_SPECIES="capybara"
 
 C=$'\033[38;2;255;193;7m'
 NC=$'\033[0m'
@@ -58,24 +62,32 @@ if [ "$FRAME" -eq -1 ]; then
   FRAME=0
 fi
 
-# Face based on state
+# Determine state key: idle | blink | success | error | pet
+STATE_KEY="idle"
 case "$REASON" in
-  error|test-fail) FACE='( ◕_◕ )' ;;
-  large-diff)      FACE='( ◕o◕ )' ;;
-  build-pass)      FACE='( ◕▽◕ )' ;;
-  pet)             FACE='( ◕ω◕ )' ;;
+  error|test-fail) STATE_KEY="error" ;;
+  build-pass)      STATE_KEY="success" ;;
+  pet)             STATE_KEY="pet" ;;
+  large-diff)      STATE_KEY="error" ;;
   *)
     case $FRAME in
-      0) FACE='( ◕.◕ )' ;;
-      1) FACE='( ◕▽◕ )' ;;
-      2) FACE='( ◕.◕ )' ;;
+      1) STATE_KEY="success" ;;
+      2) STATE_KEY="idle" ;;
+      *) STATE_KEY="idle" ;;
     esac ;;
 esac
-
-# Blink: replace eyes with ─ (only when idle)
 if [ "$BLINK" -eq 1 ] && [ -z "$REASON" ]; then
-  FACE='( ─.─ )'
+  STATE_KEY="blink"
 fi
+
+# Face (used by capybara's single-line face; catgirl rebuilds per-state below)
+case "$STATE_KEY" in
+  error)   FACE='( ◕_◕ )' ;;
+  success) FACE='( ◕▽◕ )' ;;
+  pet)     FACE='( ◕ω◕ )' ;;
+  blink)   FACE='( ─.─ )' ;;
+  *)       FACE='( ◕.◕ )' ;;
+esac
 
 # Truncate reaction text to fit bubble (max 30 chars)
 BUBBLE_MAX=30
@@ -114,35 +126,60 @@ pad_to() {
   printf '%s%*s' "$str" "$need" ""
 }
 
-# Body + face based on state
-case "$REASON" in
-  build-pass|pet)
-    BODY='\(  ♡   )/'
-    FACE_LINE="${FACE}"
-    ;;
-  error)
-    BODY='(  ♡   )'
-    FACE_LINE="${FACE}>"
-    ;;
-  test-fail)
-    BODY='(  ...  )'
-    FACE_LINE="${FACE}"
-    ;;
-  *)
-    BODY='(  ♡   )'
-    FACE_LINE="${FACE}"
-    ;;
-esac
+# Build art lines per species and state
+ART_LINES=()
 
+if [ "$DISPLAY_SPECIES" = "catgirl" ]; then
+  # E-girl cat sprites (6 body lines: ears, face, torso, skirt, legs, feet)
+  EARS='   n   n  '
+  SKIRT='  /~~~~\  '
+  LEGS='   |  |   '
+  FEET='   ^^  ^^ '
+  case "$STATE_KEY" in
+    success)
+      FACE_LINE=' ( ◕▽◕ )  '
+      TORSO='  \|♡ |\  '
+      ;;
+    error)
+      FACE_LINE=' ( ◕_◕ )> '
+      TORSO='   |♡ |   '
+      ;;
+    blink)
+      FACE_LINE=' ( ─.─ )  '
+      TORSO='   |♡ |   '
+      ;;
+    pet)
+      FACE_LINE=' ( ◕ω◕ )  '
+      TORSO='  \|♡ |\  '
+      ;;
+    *)
+      FACE_LINE=' ( ◕.◕ )  '
+      TORSO='  ╱|♡ |╲  '
+      ;;
+  esac
+  ART_LINES=("$EARS" "$FACE_LINE" "$TORSO" "$SKIRT" "$LEGS" "$FEET")
+else
+  # Capybara (default) — 5 body lines: head, face, body, butt, feet
+  case "$STATE_KEY" in
+    success|pet)
+      BODY='\(  ♡   )/'
+      FACE_OUT="${FACE}"
+      ;;
+    error)
+      BODY='(  ♡   )'
+      FACE_OUT="${FACE}>"
+      ;;
+    *)
+      BODY='(  ♡   )'
+      FACE_OUT="${FACE}"
+      ;;
+  esac
+  ART_LINES=(" ╭────╮  " "${FACE_OUT} " "${BODY} " "(______) " " ~~  ~~  ")
+fi
 
 L_BT=$(pad_to "$BUB_T" "$TOTAL_W")
 L_BM=$(pad_to "$BUB_M" "$TOTAL_W")
 L_BB=$(pad_to "$BUB_B" "$TOTAL_W")
-L_HEAD=$(pad_to " ╭────╮  " "$TOTAL_W")
-L_FACE=$(pad_to "${FACE_LINE} " "$TOTAL_W")
-L_BODY=$(pad_to "${BODY} " "$TOTAL_W")
-L_BUTT=$(pad_to "(______) " "$TOTAL_W")
-L_FEET=$(pad_to " ~~  ~~  " "$TOTAL_W")
 
 # Right-align
 PAD=$(( COLS - TOTAL_W - 4 ))
@@ -154,10 +191,9 @@ for (( i=0; i<PAD; i++ )); do SPACER="${SPACER}${B}"; done
 echo "${SPACER}${DIM}${L_BT}${NC}"
 echo "${SPACER}${DIM}${L_BM}${NC}"
 echo "${SPACER}${DIM}${L_BB}${NC}"
-echo "${SPACER}${C}${L_HEAD}${NC}"
-echo "${SPACER}${C}${L_FACE}${NC}"
-echo "${SPACER}${C}${L_BODY}${NC}"
-echo "${SPACER}${C}${L_BUTT}${NC}"
-echo "${SPACER}${C}${L_FEET}${NC}"
+for line in "${ART_LINES[@]}"; do
+  PADDED=$(pad_to "$line" "$TOTAL_W")
+  echo "${SPACER}${C}${PADDED}${NC}"
+done
 
 exit 0

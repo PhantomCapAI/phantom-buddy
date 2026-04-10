@@ -80,6 +80,7 @@ export function resolveUserId(): string {
 export interface StatusState {
   name: string;
   species: string;
+  displaySpecies: string;
   rarity: string;
   stars: string;
   face: string;
@@ -95,6 +96,7 @@ export function writeStatusState(companion: Companion, reaction?: string, muted?
   const state: StatusState = {
     name: companion.name,
     species: companion.bones.species,
+    displaySpecies: companion.displaySpecies ?? "capybara",
     rarity: companion.bones.rarity,
     stars: RARITY_STARS[companion.bones.rarity],
     face: renderFace(companion.bones.species, companion.bones.eye),

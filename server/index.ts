@@ -12,8 +12,8 @@ import { z } from "zod";
 
 import {
   generateBones, renderFace,
-  SPECIES, RARITIES, STAT_NAMES, RARITY_STARS,
-  type Species, type Rarity, type StatName, type Companion,
+  SPECIES, RARITIES, STAT_NAMES, RARITY_STARS, DISPLAY_SPECIES,
+  type Species, type Rarity, type StatName, type Companion, type DisplaySpecies,
 } from "./engine.ts";
 import {
   loadCompanion, saveCompanion, resolveUserId,
@@ -63,6 +63,7 @@ function ensureCompanion(): Companion {
     personality: `A ${bones.rarity} ${bones.species} who watches code with quiet intensity.`,
     hatchedAt: Date.now(),
     userId,
+    displaySpecies: "capybara",
   };
   saveCompanion(companion);
   writeStatusState(companion);
@@ -189,6 +190,26 @@ server.tool(
 
     return {
       content: [{ type: "text", text: `Personality updated for ${companion.name}.` }],
+    };
+  },
+);
+
+// ─── Tool: buddy_set_species ────────────────────────────────────────────────
+
+server.tool(
+  "buddy_set_species",
+  "Switch your buddy's visual character (body only — reactions, speech, hooks, and personality are shared). Options: capybara, catgirl.",
+  {
+    species: z.enum(DISPLAY_SPECIES).describe("Display species: 'capybara' or 'catgirl'"),
+  },
+  async ({ species }) => {
+    const companion = ensureCompanion();
+    companion.displaySpecies = species as DisplaySpecies;
+    saveCompanion(companion);
+    writeStatusState(companion);
+
+    return {
+      content: [{ type: "text", text: `${companion.name} is now a ${species}.` }],
     };
   },
 );
