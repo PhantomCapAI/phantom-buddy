@@ -60,21 +60,21 @@ fi
 
 # Face based on state
 case "$REASON" in
-  error|test-fail) FACE='(◕_◕  )' ;;
-  large-diff)      FACE='(◕o◕  )' ;;
-  build-pass)      FACE='(◕▽◕  )' ;;
-  pet)             FACE='(◕ω◕  )' ;;
+  error|test-fail) FACE='( ◕_◕ )' ;;
+  large-diff)      FACE='( ◕o◕ )' ;;
+  build-pass)      FACE='( ◕▽◕ )' ;;
+  pet)             FACE='( ◕ω◕ )' ;;
   *)
     case $FRAME in
-      0) FACE='(◕.◕  )' ;;
-      1) FACE='(◕▽◕  )' ;;
-      2) FACE='(◕.◕  )' ;;
+      0) FACE='( ◕.◕ )' ;;
+      1) FACE='( ◕▽◕ )' ;;
+      2) FACE='( ◕.◕ )' ;;
     esac ;;
 esac
 
 # Blink: replace eyes with ─ (only when idle)
 if [ "$BLINK" -eq 1 ] && [ -z "$REASON" ]; then
-  FACE='(─.─  )'
+  FACE='( ─.─ )'
 fi
 
 # Truncate reaction text to fit bubble (max 30 chars)
@@ -120,9 +120,13 @@ case "$REASON" in
     BODY='\(  ♡   )/'
     FACE_LINE="${FACE}"
     ;;
-  error|test-fail)
+  error)
     BODY='(  ♡   )'
     FACE_LINE="${FACE}>"
+    ;;
+  test-fail)
+    BODY='(  ...  )'
+    FACE_LINE="${FACE}"
     ;;
   *)
     BODY='(  ♡   )'
@@ -130,10 +134,6 @@ case "$REASON" in
     ;;
 esac
 
-# Test-fail gets special belly
-if [ "$REASON" = "test-fail" ]; then
-  BODY='(  ...  )'
-fi
 
 L_BT=$(pad_to "$BUB_T" "$TOTAL_W")
 L_BM=$(pad_to "$BUB_M" "$TOTAL_W")

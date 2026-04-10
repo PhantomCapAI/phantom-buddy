@@ -264,7 +264,7 @@ SPECIES_ART["miko" as Species] = [
   // Frame 0: idle
   [
     " ╭────╮    ",
-    "(◕.◕  )   ",
+    "( ◕.◕ )   ",
     "(  ♡   )  ",
     "(______)  ",
     " ~~  ~~    ",
@@ -272,7 +272,7 @@ SPECIES_ART["miko" as Species] = [
   // Frame 1: success (arms up celebrating)
   [
     " ╭────╮    ",
-    "(◕▽◕  )   ",
+    "( ◕▽◕ )   ",
     "\\(  ♡   )/",
     "(______)  ",
     " ~~  ~~    ",
@@ -280,7 +280,7 @@ SPECIES_ART["miko" as Species] = [
   // Frame 2: error (hand near face)
   [
     " ╭────╮    ",
-    "(◕_◕  )>  ",
+    "( ◕_◕ )>  ",
     "(  ♡   )  ",
     "(______)  ",
     " ~~  ~~    ",
