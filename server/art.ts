@@ -258,48 +258,34 @@ export function renderStatusLine(
 }
 
 // ─── Miko custom species (Phantom Capital) ──────────────────────────────────
+// E-girl with cat headphones, heart top, skirt, legs, shoes
 
 SPECIES_ART["miko" as Species] = [
-  // Frame 0: reading
+  // Frame 0: idle
   [
-    "            ",
-    "  n   n     ",
-    " (\u25d5.\u25d5 )  ___",
-    "  /~~[=]~|_=|",
-    "  / ^^  ^^ ",
+    "   n   n    ",
+    "  (◕.◕ )   ",
+    "   |♡ |    ",
+    "  /~~~~\   ",
+    "   |  |    ",
+    "   ^^  ^^  ",
   ],
-  // Frame 1: looks up (tool success)
+  // Frame 1: success
   [
-    "            ",
-    "  n   n     ",
-    " (\u25d5o\u25d5 )  ___",
-    "  /~~~~~~|_=|",
-    "  / ^^  ^^ ",
+    "   n   n    ",
+    "  (◕▽◕ )   ",
+    "   |♡ |    ",
+    "  /~~~~\   ",
+    "   |  |    ",
+    "   ^^  ^^  ",
   ],
-  // Frame 2: excited (build pass)
+  // Frame 2: error
   [
-    "            ",
-    "  n   n     ",
-    " (\u25d5\u25bd\u25d5 )  ___",
-    "  /~~~~~~|_=|",
-    "    ^^  ^^ ",
+    "   n   n    ",
+    "  (◕_◕ )   ",
+    "   |♡ |    ",
+    "  /~~~~\   ",
+    "   |  |    ",
+    "   ^^  ^^  ",
   ],
-];
-
-// Blink frame used for idle
-const MIKO_BLINK = [
-  "            ",
-  "  n   n     ",
-  " (\u2500.\u2500 )  ___",
-  "  /~~~~~~|_=|",
-  "  / ^^  ^^ ",
-];
-
-// Error frame
-const MIKO_ERROR = [
-  "            ",
-  "  n   n     ",
-  " (\u25d5_\u25d5 )  ___",
-  "  /~~~~~~|_=|",
-  "  / ^^  ^^ ",
 ];
