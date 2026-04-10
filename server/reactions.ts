@@ -185,3 +185,56 @@ export function generatePersonalityPrompt(
     "Return JSON: {\"name\": \"1-14 chars\", \"personality\": \"2-3 sentences describing behavior\"}",
   ].filter(Boolean).join("\n");
 }
+
+// ─── Miko species reactions (Phantom Capital) ───────────────────────────────
+
+SPECIES_REACTIONS["miko" as Species] = {
+  hatch: [
+    "yo. miko online.",
+    "*adjusts headphones* let's code.",
+    "...did someone say debugging?",
+  ],
+  pet: [
+    "*slight smile* ...don't make it weird.",
+    "hmph. fine. that was nice.",
+    "*ears twitch*",
+  ],
+  error: [
+    "bruh.",
+    "bruh. line {line}.",
+    "*stares at stacktrace* ...really?",
+    "skill issue tbh.",
+    "that's not it chief.",
+  ],
+  "test-fail": [
+    "bruh.",
+    "bruh. {count} failed.",
+    "*sips boba* tests said no.",
+    "the audacity of this assertion.",
+  ],
+  "large-diff": [
+    "that's a whole rewrite bestie.",
+    "*scrolls* ...you changed {lines} lines???",
+    "bold. chaotic. i respect it.",
+  ],
+  turn: [
+    "*watches*",
+    "*types quietly*",
+    "...",
+    "mhm.",
+  ],
+  idle: [
+    "zzz",
+    "*doodles on terminal*",
+    "zzz... dreaming of clean builds...",
+    "*idle animation*",
+  ],
+};
+
+// Build pass special reaction for Miko
+const MIKO_BUILD_PASS = [
+  "nya~ clean build.",
+  "nya~ shipped it.",
+  "nya~ zero warnings.",
+  "green across the board nya~",
+];

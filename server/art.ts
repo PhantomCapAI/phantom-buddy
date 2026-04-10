@@ -256,3 +256,50 @@ export function renderStatusLine(
   const msg = reaction ? ` \u2502 "${reaction}"` : "";
   return `${color}${face}${NC} ${BOLD}${name}${NC} ${shiny}${color}${stars}${NC}${msg}`;
 }
+
+// ─── Miko custom species (Phantom Capital) ──────────────────────────────────
+
+SPECIES_ART["miko" as Species] = [
+  // Frame 0: reading
+  [
+    "            ",
+    "  n   n     ",
+    " (\u25d5.\u25d5 )  ___",
+    "  /~~[=]~|_=|",
+    "  / ^^  ^^ ",
+  ],
+  // Frame 1: looks up (tool success)
+  [
+    "            ",
+    "  n   n     ",
+    " (\u25d5o\u25d5 )  ___",
+    "  /~~~~~~|_=|",
+    "  / ^^  ^^ ",
+  ],
+  // Frame 2: excited (build pass)
+  [
+    "            ",
+    "  n   n     ",
+    " (\u25d5\u25bd\u25d5 )  ___",
+    "  /~~~~~~|_=|",
+    "    ^^  ^^ ",
+  ],
+];
+
+// Blink frame used for idle
+const MIKO_BLINK = [
+  "            ",
+  "  n   n     ",
+  " (\u2500.\u2500 )  ___",
+  "  /~~~~~~|_=|",
+  "  / ^^  ^^ ",
+];
+
+// Error frame
+const MIKO_ERROR = [
+  "            ",
+  "  n   n     ",
+  " (\u25d5_\u25d5 )  ___",
+  "  /~~~~~~|_=|",
+  "  / ^^  ^^ ",
+];

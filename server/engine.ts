@@ -8,7 +8,7 @@ export const SALT = "friend-2026-401";
 export const SPECIES = [
   "duck", "goose", "blob", "cat", "dragon", "octopus", "owl", "penguin",
   "turtle", "snail", "ghost", "axolotl", "capybara", "cactus", "robot",
-  "rabbit", "mushroom", "chonk",
+  "rabbit", "mushroom", "chonk", "miko",
 ] as const;
 
 export type Species = typeof SPECIES[number];
@@ -171,6 +171,7 @@ const FACE_TEMPLATES: Record<Species, string> = {
   rabbit:   "({E}..{E})",
   mushroom: "|{E}  {E}|",
   chonk:    "({E}.{E})",
+  miko:     "(25d5.25d5)",
 };
 
 export function renderFace(species: Species, eye: Eye): string {
