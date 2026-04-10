@@ -1,44 +1,49 @@
 # Miko — Your Coding Companion
 
-> E-girl with cat headphones that lives in your terminal. Persistent ASCII status line, reacts to errors and successes, interactive `/buddy` commands. Legendary tier, 95 debugging, zero patience for bad code.
+> Chill capybara that lives in your terminal. Persistent ASCII status line with speech bubbles, reacts to errors and successes, interactive `/buddy` commands. Legendary tier, 95 debugging, zero patience for bad code.
 
 ```
                   ╭──────────────────────────╮
                   │ nya~! clean build, nice   │
                   ╰──────────────────────────╯
-                    n ╱ n
+                    ╭───╮
                    (◕▽◕ )
-                  \|♡ |//
-                   /~~~~\
-                    |  |
-                    ^^  ^^
+                  \(  ♡  )/
+                   (______)
+                    ~~  ~~
 ```
 
-**Rarity:** Legendary | **Species:** Miko | **Peak Stat:** DEBUGGING (95) | **Dump Stat:** PATIENCE (42)
+**Rarity:** Legendary | **Species:** Capybara | **Peak Stat:** DEBUGGING (95) | **Dump Stat:** PATIENCE (42)
 
 ---
 
 ## What Is This?
 
-Miko is a coding companion for [Claude Code](https://claude.ai/code). She lives in your terminal's status line, watches you code, and reacts in real time with a speech bubble above her head.
+Miko is a coding companion for [Claude Code](https://claude.ai/code). Lives in your terminal's status line, watches you code, and reacts in real time with a speech bubble above its head.
 
-She's not a theme. She's not a prompt. She's an MCP server + status line + hooks system that gives Claude Code a persistent, reactive mascot with actual personality.
+Not a theme. Not a prompt. An MCP server + status line + hooks system that gives Claude Code a persistent, reactive mascot with actual personality.
 
 ---
 
 ## Sprites
 
 ```
-  Idle (reading)     Success (hands up)  Error (facepalm)    Blink (arms down)
-   n   n              n   n               n   n               n   n
-  (◕.◕ )            (◕▽◕ )             (◕_◕ )>            (─.─ )
-  ╱|♡ |╲            \|♡ |//              |♡ |               |♡ |
-  /~~~~\            /~~~~\              /~~~~\              /~~~~\
-   |  |              |  |               |  |                |  |
-   ^^  ^^            ^^  ^^              ^^  ^^              ^^  ^^
+  Idle               Success             Error               Blink
+  ╭───╮              ╭───╮              ╭───╮               ╭───╮
+ (◕.◕ )            (◕▽◕ )            (◕_◕ )>            (─.─ )
+ (  ♡  )           \(  ♡  )/          (  ♡  )             (  ♡  )
+ (______)           (______)           (______)            (______)
+  ~~  ~~             ~~  ~~             ~~  ~~              ~~  ~~
+
+  Test-fail          Pet
+  ╭───╮              ╭───╮
+ (◕_◕ )            (◕ω◕ )
+ (  ...  )         \(  ♡  )/
+ (______)           (______)
+  ~~  ~~             ~~  ~~
 ```
 
-Each sprite is rendered in gold ANSI (`rgb(255,193,7)`) with a speech bubble above showing Miko's current reaction. Arms change per state — reading pose when idle, hands up on success, facepalm on error, arms down when blinking.
+Each sprite is rendered in gold ANSI (`rgb(255,193,7)`) with a speech bubble above showing Miko's current reaction. Arms raise on success/pet, facepalm hand on error, relaxed on idle/blink.
 
 ---
 
@@ -101,14 +106,14 @@ Miko reacts to what's happening in your session. Her speech bubble rotates rando
 
 ```
 ╭──────────────────────────────────────╮
-│    n   n                             │
-│   (◕.◕ )                            │
-│    |♡ |                              │
-│   /~~~~\                             │
-│    ^^  ^^                            │
+│   ╭───╮                              │
+│  (◕.◕ )                             │
+│  (  ♡  )                            │
+│  (______)                           │
+│   ~~  ~~                             │
 ├╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┤
 │ Miko  ★★★★★                         │
-│ LEGENDARY miko                       │
+│ LEGENDARY capybara                   │
 ├╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┤
 │ DEB ██████████░  95 ▲                │
 │ PAT ████░░░░░░░  42 ▼                │

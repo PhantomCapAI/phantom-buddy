@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Miko status line — ASCII art + speech bubble, right-aligned
+# Miko (capybara) status line — ASCII art + speech bubble, right-aligned
 # Reads reaction text from reaction.json and displays it
 
 STATE="$HOME/.claude-buddy/status.json"
@@ -114,41 +114,35 @@ pad_to() {
   printf '%s%*s' "$str" "$need" ""
 }
 
-# Arms based on state
+# Body + face based on state
 case "$REASON" in
   build-pass|pet)
-    # Hands up celebrating
-    ARMS='\\|♡ |//'
+    BODY='\(  ♡  )/'
+    FACE_LINE=" ${FACE} "
     ;;
   error|test-fail)
-    # Facepalm — hand on face, no arms on body
-    ARMS=' |♡ |  '
+    BODY=' (  ♡  ) '
+    FACE_LINE=" ${FACE}>"
     ;;
   *)
-    if [ "$BLINK" -eq 1 ]; then
-      # Arms down when blinking
-      ARMS=' |♡ |  '
-    else
-      # Idle — arms out reading
-      ARMS='╱|♡ |╲ '
-    fi
+    BODY=' (  ♡  ) '
+    FACE_LINE=" ${FACE} "
     ;;
 esac
 
-# Face line — error gets the > facepalm hand
-case "$REASON" in
-  error|test-fail) FACE_LINE=" ${FACE}>" ;;
-  *)               FACE_LINE=" ${FACE} " ;;
-esac
+# Test-fail gets special belly
+if [ "$REASON" = "test-fail" ]; then
+  BODY=' (  ...  )'
+fi
 
 L_BT=$(pad_to "$BUB_T" "$TOTAL_W")
 L_BM=$(pad_to "$BUB_M" "$TOTAL_W")
 L_BB=$(pad_to "$BUB_B" "$TOTAL_W")
-L_EARS=$(pad_to "  n ╱ n    " "$TOTAL_W")
+L_HEAD=$(pad_to "  ╭───╮    " "$TOTAL_W")
 L_FACE=$(pad_to "${FACE_LINE}   " "$TOTAL_W")
-L_BODY=$(pad_to " ${ARMS}    " "$TOTAL_W")
-L_SKRT=$(pad_to " /~~~~\\    " "$TOTAL_W")
-L_FEET=$(pad_to "  ^^  ^^   " "$TOTAL_W")
+L_BODY=$(pad_to " ${BODY}   " "$TOTAL_W")
+L_BUTT=$(pad_to " (______) " "$TOTAL_W")
+L_FEET=$(pad_to "  ~~  ~~   " "$TOTAL_W")
 
 # Right-align
 PAD=$(( COLS - TOTAL_W - 4 ))
@@ -160,10 +154,10 @@ for (( i=0; i<PAD; i++ )); do SPACER="${SPACER}${B}"; done
 echo "${SPACER}${DIM}${L_BT}${NC}"
 echo "${SPACER}${DIM}${L_BM}${NC}"
 echo "${SPACER}${DIM}${L_BB}${NC}"
-echo "${SPACER}${C}${L_EARS}${NC}"
+echo "${SPACER}${C}${L_HEAD}${NC}"
 echo "${SPACER}${C}${L_FACE}${NC}"
 echo "${SPACER}${C}${L_BODY}${NC}"
-echo "${SPACER}${C}${L_SKRT}${NC}"
+echo "${SPACER}${C}${L_BUTT}${NC}"
 echo "${SPACER}${C}${L_FEET}${NC}"
 
 exit 0

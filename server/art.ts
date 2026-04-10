@@ -258,34 +258,31 @@ export function renderStatusLine(
 }
 
 // ─── Miko custom species (Phantom Capital) ──────────────────────────────────
-// E-girl with cat headphones, heart top, skirt, legs, shoes
+// Capybara with heart belly — chill, round, legendary
 
 SPECIES_ART["miko" as Species] = [
-  // Frame 0: idle (reading, arms out)
+  // Frame 0: idle
   [
-    "   n   n    ",
-    "  (◕.◕ )   ",
-    "  ╱|♡ |╲   ",
-    "  /~~~~\\   ",
-    "   |  |    ",
-    "   ^^  ^^  ",
+    "  ╭───╮    ",
+    " (◕.◕ )   ",
+    " (  ♡  )  ",
+    " (______) ",
+    "  ~~  ~~   ",
   ],
-  // Frame 1: success (hands up celebrating)
+  // Frame 1: success (arms up celebrating)
   [
-    "   n   n    ",
-    "  (◕▽◕ )   ",
-    " \\\\|♡ |//  ",
-    "  /~~~~\\   ",
-    "   |  |    ",
-    "   ^^  ^^  ",
+    "  ╭───╮    ",
+    " (◕▽◕ )   ",
+    "\\(  ♡  )/ ",
+    " (______) ",
+    "  ~~  ~~   ",
   ],
-  // Frame 2: error (facepalm, hand on face)
+  // Frame 2: error (hand near face)
   [
-    "   n   n    ",
-    "  (◕_◕ )>  ",
-    "   |♡ |    ",
-    "  /~~~~\\   ",
-    "   |  |    ",
-    "   ^^  ^^  ",
+    "  ╭───╮    ",
+    " (◕_◕ )>  ",
+    " (  ♡  )  ",
+    " (______) ",
+    "  ~~  ~~   ",
   ],
 ];

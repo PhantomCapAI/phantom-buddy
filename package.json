@@ -1,7 +1,7 @@
 {
   "name": "phantom-buddy",
   "version": "1.0.0",
-  "description": "Miko — Your Coding Companion. E-girl with cat headphones that lives in your terminal. Persistent ASCII status line with speech bubbles, reacts to errors and successes, interactive /buddy commands.",
+  "description": "Miko — Your Coding Companion. Chill capybara that lives in your terminal. Persistent ASCII status line with speech bubbles, reacts to errors and successes, interactive /buddy commands.",
   "type": "module",
   "author": "Phantom Capital <dev@phantomcapital.io> (https://github.com/PhantomCapAI)",
   "homepage": "https://github.com/PhantomCapAI/phantom-buddy",
